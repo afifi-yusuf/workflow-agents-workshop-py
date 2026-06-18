@@ -21,5 +21,7 @@ projects:
         fromDatabase:
           name: afifi-yusuf-naive-agent-db
           property: connectionString
+      - key: OPENAI_API_KEY
+        sync: false
       - key: PYTHON_VERSION
         value: '3.12'

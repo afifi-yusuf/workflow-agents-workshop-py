@@ -1472,6 +1472,12 @@ dev = [
     { name = "pytest-asyncio" },
     { name = "pyyaml" },
     { name = "ruff" },
+    { name = "workshop-agent" },
+    { name = "workshop-db" },
+    { name = "workshop-naive-agent" },
+    { name = "workshop-queue-agents" },
+    { name = "workshop-ui" },
+    { name = "workshop-workflow-agents" },
 ]
 
 [package.metadata]
@@ -1484,6 +1490,12 @@ dev = [
     { name = "pytest-asyncio", specifier = ">=0.24" },
     { name = "pyyaml", specifier = ">=6.0" },
     { name = "ruff", specifier = ">=0.8" },
+    { name = "workshop-agent", editable = "shared/agent" },
+    { name = "workshop-db", editable = "shared/db" },
+    { name = "workshop-naive-agent", editable = "packages/naive_agent" },
+    { name = "workshop-queue-agents", editable = "packages/queue_agents" },
+    { name = "workshop-ui", editable = "shared/ui" },
+    { name = "workshop-workflow-agents", editable = "packages/workflow_agents" },
 ]
 
 [[package]]
