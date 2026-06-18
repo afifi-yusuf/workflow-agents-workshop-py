@@ -71,3 +71,19 @@ def test_resolve_client_returns_mock(monkeypatch):
     monkeypatch.setenv("AGENT_MODEL", "mock")
     client = resolve_client(ModelSpec(provider=Provider.ANTHROPIC, model="claude-sonnet-4-6"))
     assert isinstance(client, MockClient)
+
+
+def test_resolve_model_spec_tier_uses_openai_when_only_openai_key(monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    monkeypatch.setenv("OPENAI_API_KEY", "sk-test")
+    spec = resolve_model_spec("medium")
+    assert spec.provider == Provider.OPENAI
+    assert spec.model == "gpt-4o"
+
+
+def test_resolve_model_spec_tier_prefers_anthropic_when_both_keys(monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-ant-test")
+    monkeypatch.setenv("OPENAI_API_KEY", "sk-test")
+    spec = resolve_model_spec("medium")
+    assert spec.provider == Provider.ANTHROPIC
+    assert "sonnet" in spec.model
